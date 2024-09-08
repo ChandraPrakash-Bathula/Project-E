@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main>
+        <!-- Summarization -->
+        <section>
+    
+            <h2>Summarization</h2>
+            <form id="summarizationForm" action="/summarize_text" method="post">
+                <textarea name="text_to_summarize" id="summarizationInput" rows="5" cols="50"
+                    placeholder="Enter text to summarize"></textarea>
+                <button type="submit">Summarize</button>
+            </form>
+        </section>
+    
+        <!-- Translation -->
+    
+        <section>
+            <h2>Translation</h2>
+            <form id="translationForm" action="/translate_text" method="post">
+                <textarea name="text_to_translate" id="translationInput" rows="5" cols="50"
+                    placeholder="Enter text to translate"></textarea>
+                <select name="target_language" id="targetLanguage">
+                    <option value="Hindi">Hindi</option>
+                    <option value="German">German</option>
+                </select>
+                <button type="submit">Translate</button>
+            </form>
+        </section>
+    
+        <!-- Transcription -->
+        <section>
+            <h2>Transcription</h2>
+            <form id="transcriptionForm" action="/transcribe" method="post" enctype="multipart/form-data">
+                <input type="file" name="mediaFile" id="mediaFile" accept=".mp4,.mkv,.avi,.wav">
+                <button type="submit">Transcribe</button>
+            </form>
+        </section>
+        <!-- Key Word Extraction -->
+        <section>
+            <h2>Keyword Extraction</h2>
+            <form id="keywordExtractionForm" action="/extract_keywords" method="post">
+                <textarea name="text_to_process" id="keywordExtractionInput" rows="5" cols="50"
+                    placeholder="Enter text to extract keywords"></textarea>
+                <button type="submit">Extract Keywords</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
+
+
+
+
