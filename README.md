@@ -75,11 +75,12 @@ The repository structure is organized as follows:
 - `app.py`: Flask application file containing route definitions and server configuration.
 - `views.py`: Contains view functions for handling user requests and interacting with the models.
 - `urls.py`: Defines URL routes for the web application.
-- `models/`: Directory containing machine learning model implementations.
-  - `translation.py`: Translation model implementation.
-  - `transcribe.py`: Transcription model implementation.
-  - `keywords.py`: Keyword prediction model implementation.
-  - `summarization.py`: Summarization model implementation.
+- `features/`: Directory containing feature implementations.
+  - `translation.py`: Translate a given text from source language (defalut: english) to desired target language. Supportes 100+ languages
+  - `transcrber/transcribe.py`: convert a video to audio and do a ASR on it to convert the audio into text
+  - `keyword_extraction/keywords.py`: Extract the important keyphrases from a document, allowing you grasp the essence quicker.
+  - `summarization.py`: creates a shorter version of a document or an article that captures all the important information.
+  - `classifier.py`: Zero-shot-classification pipeline. It can classify any text to any labels (labels can be sentiments, topics, intents, etc...) 
 - `templates/`: Directory containing HTML templates for the web application.
 - `static/`: Directory containing static files such as CSS stylesheets and JavaScript scripts.
 
