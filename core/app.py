@@ -1,8 +1,10 @@
 from flask import Flask, request, render_template
-from core.features.summarization import summarize_text
-from core.features.translation import translate_text
-from core.features.transcribe import convert_video_to_audio, transcribe_audio
-from core.features.keyword_extraction import extract_keywords
+from features.summarization import with_slm, with_summarization_pipe
+from features.asr import audio_transcription, video_transcription
+from features.keyword_extraction import extract_keywords
+from features.translation import translate_text
+from features.tts import text2speech
+from features.zsclassifier import classify_text
 import ssl
 
 ssl._create_default_https_context = ssl._create_unverified_context

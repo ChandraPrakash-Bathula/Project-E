@@ -1,12 +1,11 @@
 import nltk
-import nltk
 from nltk.corpus import words
 from nltk.tokenize import word_tokenize, sent_tokenize
 
 nltk.download('punkt')
 nltk.download("words")
 
-def split_into_paragraphs(self, doc: str, tokenizer,  max_tokens_per_para: int = 128):
+def split_into_paragraphs(doc: str, tokenizer,  max_tokens_per_para: int = 128):
     sentences = sent_tokenize(doc.strip())
     temp = ""
     temp_list = []

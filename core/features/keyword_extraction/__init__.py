@@ -1,1 +1,1 @@
-from .keywords import extract_keywords
+from .main import extract_keywords

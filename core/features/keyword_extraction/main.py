@@ -1,12 +1,9 @@
-# import
-import os
-import sys
-import nltk
 from transformers import AutoTokenizer, T5ForConditionalGeneration, MT5ForConditionalGeneration
 from .utils import split_into_paragraphs, process_outputs, filter_outputs
 
-model = MT5ForConditionalGeneration.from_pretrained("snrspeaks/KeyPhraseTransformer")
-tokenizer = AutoTokenizer.from_pretrained("snrspeaks/KeyPhraseTransformer")  
+cache_dir = "./model/"
+model = MT5ForConditionalGeneration.from_pretrained("snrspeaks/KeyPhraseTransformer", cache_dir=cache_dir)
+tokenizer = AutoTokenizer.from_pretrained("snrspeaks/KeyPhraseTransformer", cache_dir=cache_dir)  
 
 def predict(doc: str):
     input_ids = tokenizer.encode(
