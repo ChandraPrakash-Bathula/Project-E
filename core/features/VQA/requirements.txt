@@ -1,0 +1,6 @@
+bitsandbytes
+ultralytics
+transformers
+pillow
+matplotlib
+googletrans==4.0.0-rc1
