@@ -1,4 +1,4 @@
-from audio_transcription import transcribe_audio
+from whisper_turbov3 import transcribe_audio
 import moviepy.editor as mp
 from pydub import AudioSegment
 import os

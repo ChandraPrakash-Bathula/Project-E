@@ -5,7 +5,7 @@ from typing import List
 import os
 
 from features.summarization import with_slm, with_summarization_pipe
-from features.asr import audio_transcription, video_transcription
+from features.asr import transcribe_video, transcribe_audio
 from features.keyword_extraction import extract_keywords
 from features.translation import translate_text
 from features.tts import text2speech
@@ -17,7 +17,7 @@ from schema import (
     KeywordExtractionResponse, TranscriptionResponse
 )
 
-app = FastAPI()
+app = FastAPI(title="EliteNotes API")
 
 @app.post("/summarize/", response_model=SummarizationResponse)
 async def summarization(file: UploadFile = File(...)):
@@ -48,9 +48,9 @@ async def transcribe_file(file: UploadFile = File(...)):
         buffer.write(await file.read())
     
     if file.filename.endswith(('.mp4', '.avi', '.mov')):
-        transcript = video_transcription(file_path)
+        transcript = transcribe_video(file_path)
     elif file.filename.endswith(('.mp3', '.wav', '.ogg')):
-        transcript = audio_transcription(file_path)
+        transcript = transcribe_audio(file_path)
     else:
         raise ValueError("Unsupported file format")
     
