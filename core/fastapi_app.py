@@ -1,20 +1,21 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import FileResponse
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 import os
-
+import io
 from features.summarization import with_slm, with_summarization_pipe
 from features.asr import transcribe_video, transcribe_audio
 from features.keyword_extraction import extract_keywords
 from features.translation import translate_text
 from features.tts import text2speech
 from features.zsclassifier import classify_text
+from features.VQA.main import chat_with_image
 
 from schema import (
     TranslationRequest, TranslationResponse,
     SummarizationResponse, ClassificationRequest, ClassificationResponse, TTSRequest,
-    KeywordExtractionResponse, TranscriptionResponse
+    KeywordExtractionResponse, TranscriptionResponse, ChatwImageRequest, ChatwImageResponse
 )
 
 app = FastAPI(title="EliteNotes API")
@@ -74,6 +75,13 @@ async def classify(request: ClassificationRequest):
     result = classify_text(request.text, request.labels, request.hypothesis)
     return ClassificationResponse(classification=result)
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+@app.post("/chat_with_image/", response_model=ChatwImageResponse)
+async def chat_with_image_route(file: UploadFile, text: str, target_language: Optional[str] = "en"):
+
+    # Read the uploaded image file
+    image_bytes = await file.read()
+    image = io.BytesIO(image_bytes)
+    
+    # Call the chat_with_image function
+    result = chat_with_image(image, text, target_language)
+    return ChatwImageResponse(result=result)

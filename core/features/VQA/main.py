@@ -1,6 +1,6 @@
 import sys
-from . import processor, model, yolo_model
-from .config import translate_text, detect_objects, show_image_with_boxes
+from features.VQA import processor, model, yolo_model
+from features.VQA.config import translate_text, detect_objects, show_image_with_boxes
 
 def chat_with_image(image_path, text, target_language="en"):
     try:
@@ -33,24 +33,6 @@ def chat_with_image(image_path, text, target_language="en"):
         buffer = ""
         for new_text in streamer:
             buffer += new_text
-            yield buffer
+        return buffer
     except Exception as e:
         yield f"An error occurred during processing: {str(e)}"
-
-def main():
-    image_path = os.getenv("IMAGE_PATH", "/path/to/your/image.png")
-    target_language = os.getenv("TARGET_LANGUAGE", "en")
-
-    if len(sys.argv) > 1:
-        questions = sys.argv[1:]
-    else:
-        questions = input("Enter your questions (comma-separated): ").split(',')
-
-    questions = [question.strip() for question in questions]
-    for question in questions:
-        response = chat_with_image(image_path, question, target_language)
-        print(f"Q: {question}")
-        print(f"A: {''.join(response)}")
-
-if __name__ == "__main__":
-    main()

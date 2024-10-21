@@ -33,3 +33,11 @@ class KeywordExtractionResponse(BaseModel):
 # ASR schemas
 class TranscriptionResponse(BaseModel):
     transcript: str
+
+# Chat w Image
+# class ChatwImageRequest(BaseModel):
+#     text: str
+#     target_language: Optional[str] = "en"
+
+class ChatwImageResponse(BaseModel):
+    response: str
