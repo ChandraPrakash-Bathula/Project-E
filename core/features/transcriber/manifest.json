@@ -1,9 +1,0 @@
-{
-    "audio_filepath": "",
-    "duration": "None", 
-    "taskname": "asr",
-    "source_lang": "en",
-    "target_lang": "en",
-    "pnc": "yes",
-    "answer": "na" 
-}
